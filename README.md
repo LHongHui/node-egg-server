@@ -31,3 +31,5 @@ $ npm stop
 
 
 [egg]: https://eggjs.org
+
+本项目前端vue移动端：https://github.com/LHongHui/Vue-mall.git
