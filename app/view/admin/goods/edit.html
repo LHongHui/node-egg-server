@@ -1,0 +1,317 @@
+<%- include('../public/header.html') %>
+<%- include('../public/left-menu.html') %>
+<div class="main">
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- 上传: enctype="multipart/form-data" -->
+                    <form action="/admin/goods/doedit?_csrf=<%=csrf%>" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="_id" value="<%=dataone._id%>">
+                        <div class="form-group">
+                            <label for="inputUser" class="col-sm-2 control-label">商品名称:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputUser" placeholder="请输入分类名称"
+                                    name="title" value="<%=dataone.title%>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputcat" class="col-sm-2 control-label">分类名称:</label>
+                            <div class="col-sm-10">
+                                <select name="cate_id" id="inputcat" class="form-control">
+                                    <%for(var i = 0; i<goodsCate.length; i++){%>
+                                    <%if(dataone.cate_id.toString()==goodsCate[i]._id.toString()){%>
+                                    <option selected="selected" value="<%=goodsCate[i]._id%>"><%=goodsCate[i].title%>
+                                    </option>
+                                    <%}else{%>
+                                    <option value="<%=goodsCate[i]._id%>"><%=goodsCate[i].title%></option>
+                                    <%}%>
+                                    <%}%>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputnum" class="col-sm-2 control-label">库存:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputnum" placeholder="请输入库存"
+                                    name="goods_number" value="<%=dataone.goods_number%>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputprice" class="col-sm-2 control-label">原价:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputprice" placeholder="请输入价格"
+                                    name="shop_price" value="<%=dataone.shop_price%>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputdis" class="col-sm-2 control-label">打折价</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputdis" placeholder="请输入价格"
+                                    name="market_price" value="<%=dataone.market_price%>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputcity" class="col-sm-2 control-label">地点</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputcity" placeholder="请输入地点"
+                                    name="goods_city" value="<%=dataone.goods_city%>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputtime" class="col-sm-2 control-label">场次</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputtime" placeholder="请输入场次"
+                                    name="goods_time" value="<%=dataone.goods_time%>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputprice" class="col-sm-2 control-label">票档</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputprice" placeholder="请输入票档"
+                                    name="goods_price" value="<%=dataone.goods_price%>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputposition" class="col-sm-2 control-label">位置</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputposition" placeholder="请输入位置"
+                                    name="goods_position" value="<%=dataone.goods_position%>">
+                            </div>
+                        </div>
+						<div class="form-group">
+						    <label for="inputlocation" class="col-sm-2 control-label">定位（经纬度）</label>
+						    <div class="col-sm-10">
+						        <input type="text" class="form-control" id="inputlocation" placeholder="请输入位置"
+						            name="goods_location" value="<%=dataone.goods_location%>">
+						    </div>
+						</div>
+                        <div class="form-group">
+                            <label for="inputimg" class="col-sm-2 control-label">图像</label>
+                            <div class="col-sm-10">
+                                <input type="file" class="form-control" id="inputimg" placeholder="请输入图像"
+                                    name="goods_img">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputkeyword" class="col-sm-2 control-label">商品颜色</label>
+                            <div class="col-sm-10">
+
+                                <%for(var i=0;i<colorResult.length;i++){%>
+
+
+                                <%if(dataone.goods_color.indexOf(colorResult[i]._id.toString())!=-1){%>
+
+                                <input type="checkbox" checked name="goods_color" value="<%=colorResult[i]._id%>" />
+                                <label><%=colorResult[i].color_name%></label>
+
+                                <%}else{%>
+                                <input type="checkbox" name="goods_color" value="<%=colorResult[i]._id%>" />
+                                <label><%=colorResult[i].color_name%></label>
+                                <%}%>
+                                
+                                                                                <%}%>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputkeyword" class="col-sm-2 control-label">商品尺寸</label>
+                            <div class="col-sm-10">
+
+                                <%for(var i=0;i<sizeResult.length;i++){%>
+
+
+                                <%if(dataone.goods_size.indexOf(sizeResult[i]._id.toString())!=-1){%>
+
+                                <input type="checkbox" checked name="goods_size" value="<%=sizeResult[i]._id%>" />
+                                <label><%=sizeResult[i].size_value%></label>
+
+                                <%}else{%>
+                                <input type="checkbox" name="goods_size" value="<%=sizeResult[i]._id%>" />
+                                <label><%=sizeResult[i].size_value%></label>
+                                <%}%>
+                                                        
+                                                                                                        <%}%>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputkeyword" class="col-sm-2 control-label">关键字</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputkeyword"
+                                    placeholder="请输入关键字形如 帽子,儿童帽子,羊毛帽子" name="goods_keywords"
+                                    value="<%=dataone.goods_keywords%>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputcontent" class="col-sm-2 control-label">内容</label>
+                            <div class="col-sm-10">
+                                <textarea name="goods_content" id="content" cols="100"
+                                    rows="8"><%=dataone.goods_content%></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPass" class="col-sm-2 control-label">批量上传图:</label>
+                            <div class="col-sm-10">
+                                <div role="tabpanel" class="tab-pane" id="photo">
+                                    <div id="goods_image">
+                                        <ul id="goods_image_list" class="goods_image_list clear">
+
+                                            <%for(var i=0;i<goodsImage.length;i++){%>
+                                            <li>
+                                                <img class="pic" src="<%=goodsImage[i].img_url%>" width="150" />
+
+                                                <div class="color_list">
+
+                                                    <select class="relation_goods_color"
+                                                        goods_image_id="<%=goodsImage[i]._id%>" name="color_id">
+                                                        <option value="0">关联颜色</option>
+
+                                                        <%for(var j=0;j<goodsColor.length;j++){%>
+
+                                                        <option value="<%=goodsColor[j]._id%>"
+                                                            <%if(goodsImage[i].color_id.toString()==goodsColor[j]._id){%>selected<%}%>  ><%=goodsColor[j].color_name%></option>
+                                                            <%}%>
+                                                    </select>                                                        
+                                                </div>
+                                                <div class="goods_image_delete" goods_image_id="<%=goodsImage[i]._id%>"><a
+                                                                href="javascript:;">删除</a>
+                                                </div>
+                                            </li>
+                                            <%}%>
+                                        </ul>
+                                    </div>
+
+                                    <div id="photoLib" class="photoLib"></div>
+
+
+                                    <div id="photoList"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPass" class="col-sm-2 control-label">排序:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputPass" placeholder="请输入数字" name="sort"
+                                    value="<%=dataone.sort%>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <button type="submit" class="btn btn-primary">修改</button>
+                                    </div>
+                                </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 富文本编辑器 -->
+<link href="/public/wysiwyg-editor/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<!-- Include Editor style. -->
+<link href="/public/wysiwyg-editor/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+<link href="/public/wysiwyg-editor/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+
+<!-- 引入jquery -->
+<!-- Include Editor JS files. -->
+<script type="text/javascript" src="/public/wysiwyg-editor/js/froala_editor.pkgd.min.js"></script>
+
+<script type="text/javascript" src="/public/wysiwyg-editor/js/zh_cn.js"></script>
+
+
+<!-- 批量上传图片插件 -->
+
+<link rel="stylesheet" type="text/css" href="/public/webuploader/css/webuploader.css">
+<link rel="stylesheet" type="text/css" href="/public/webuploader/css/diyUpload.css">
+<script type="text/javascript" src="/public/webuploader/js/webuploader.html5only.min.js"></script>
+<script type="text/javascript" src="/public/webuploader/js/diyUpload.js"></script>
+<script>
+    //富文本编辑器
+
+    $(function () {
+        $('#content').froalaEditor({
+            height: 300,    //给编辑器设置默认的高度
+            language: 'zh_cn',
+            imageUploadURL: '/admin/goods/goodsUploadImage',
+            //根据不同的分辨率加载不同的配置
+            toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '-', 'insertLink', 'insertImage', 'insertVideo', 'embedly', 'insertFile', 'insertTable', '|', 'emoticons', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 'print', 'spellChecker', 'help', 'html', '|', 'undo', 'redo'],
+            toolbarButtonsMD: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '-', 'insertLink', 'insertImage', 'insertVideo', 'embedly', 'insertFile', 'insertTable', '|', 'emoticons', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 'print', 'spellChecker', 'help', 'html', '|', 'undo', 'redo'],
+            toolbarButtonsSM: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '-', 'insertLink', 'insertImage', 'insertVideo', 'embedly', 'insertFile', 'insertTable', '|', 'emoticons', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 'print', 'spellChecker', 'help', 'html', '|', 'undo', 'redo']
+        });
+    });
+
+
+    //批量上传图片
+
+    $(function () {
+        var photoStr = '';
+        $('#photoLib').diyUpload({
+            url: '/admin/goods/goodsUploadPhoto',
+            success: function (response) {
+                // console.info( data );
+                photoStr = '<input type="hidden" name="goods_image_list" value=' + response.link + ' />';
+
+                $('#photoList').append(photoStr);
+            },
+            error: function (err) {
+                console.info(err);
+            }
+        });
+    })
+
+
+    $(function () {
+        //改变颜色
+        $('.relation_goods_color').change(function () {
+            var color_id = $(this).val();
+            var goods_image_id = $(this).attr('goods_image_id');
+
+            console.log(color_id, goods_image_id);
+
+            $.post('/admin/goods/changeGoodsImageColor?_csrf=<%=csrf%>', {
+                color_id: color_id, goods_image_id:
+                    goods_image_id
+            }, function (response) {
+
+                console.log(response);
+            })
+
+        })
+
+
+        //删除图片
+
+        $('.goods_image_delete').click(function () {
+
+            var _that = this;
+
+            var flag = confirm('您确定要删除吗?');
+
+            if (flag) {
+                var goods_image_id = $(this).attr('goods_image_id');
+
+                $.post('/admin/goods/goodsImageRemove?_csrf=<%=csrf%>', {
+                    goods_image_id:
+                        goods_image_id
+                }, function (response) {
+
+                    console.log(response);
+
+                    if (response.success) {
+
+                        $(_that).parent().remove();
+
+                    }
+                })
+            }
+
+
+        })
+
+    })
+</script>
+</body>
+
+</html>

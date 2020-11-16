@@ -1,0 +1,56 @@
+<%- include('../public/header.html') %>
+<%- include('../public/left-menu.html') %>
+<div class="main">
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <form action="/admin/goodsCate/doedit?_csrf=<%=csrf%>" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="_id" value="<%=dataone._id%>">
+                        <div class="form-group">
+                            <label for="inputUser" class="col-sm-2 control-label">分类名称:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputUser" placeholder="请输入名称" name="title"
+                                    value="<%=dataone.title%>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputimg" class="col-sm-2 control-label">图像</label> 图像必须上传
+                            <div class="col-sm-10">
+                                <input type="file" class="form-control" id="inputimg" placeholder="请输入图像"
+                                    name="cate_img">
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputMobile" class="col-sm-2 control-label">排序:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputMobile" placeholder="请输入排序" name="sort"
+                                    value="<%=dataone.sort%>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputMobile" class="col-sm-2 control-label">启用状态:</label>
+                            <div class="col-sm-10">
+                                <%if(dataone.status==1){%>
+                                <input type="radio" name="status" checked value="1"> 开启
+                                <input type="radio" name="status" value="0"> 关闭
+                                <%}else{%>
+                                <input type="radio" name="status" value="1"> 开启
+                                <input type="radio" name="status" checked value="0"> 关闭
+                                <%}%>
+						    </div>
+						</div>
+						<div class="form-group">
+						    <div class="col-sm-offset-2 col-sm-10">
+						      <button type="submit" class="btn btn-primary">修改</button>
+						    </div>
+						</div>
+					</form>
+		        </div>
+		    </div>
+	</div>
+</div>
+</div>
+	</body>
+</html>

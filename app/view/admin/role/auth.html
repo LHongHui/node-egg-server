@@ -1,0 +1,62 @@
+<%- include('../public/header.html') %>
+<%- include('../public/left-menu.html') %>
+
+
+
+<div class="main">
+    <div class="main-content">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                角色授权
+            </div>
+            <div class="panel-body">
+
+                <form action="/admin/role/doAuth" method="POST">
+
+
+                    <input type="hidden" name="_csrf" value="<%=csrf%>" />
+
+                    <input type="hidden" name="role_id" value="<%=role_id%>" />
+
+
+                    <table class="table table-bordered">
+
+
+
+                        <%for(var i=0;i<list.length;i++){%>
+                        <tr>
+                            <td align="right" style="background: #D8E2FA; padding-right: 10px; width: 150px;">
+                                <label>
+                                    <input type="checkbox" class="module_cbo" <%if(list[i].checked){%> checked
+                                        <%}%> value="<%=list[i]._id %>" name="access_node[]" />&nbsp;&nbsp;
+                                    <%=list[i].module_name %>
+                                </label>
+                            </td>
+                            <td>
+                                <%for(var j=0;j<list[i].items.length;j++){%>
+                                &nbsp;&nbsp;
+                                <label>
+                                    <input type="checkbox" class="action_cbo" <%if(list[i].items[j].checked){%> checked
+                                        <%}%> value="<%=list[i].items[j]._id%>" name="access_node[]">
+                                    &nbsp;&nbsp;<%=list[i].items[j].action_name%> </label>&nbsp;&nbsp;
+                                <%}%>      
+                                </td>
+                            </tr>
+
+                        <%}%>
+                    </table>
+
+
+                    <button type="submit" class="btn btn-primary">提交</button>
+
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

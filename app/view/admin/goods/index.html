@@ -1,0 +1,136 @@
+<%- include('../public/header.html') %>
+<%- include('../public/left-menu.html') %>
+<div class="main">
+    <div class="main-content">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a href="/admin/goods/add" class="btn btn-primary">增加商品</a>
+            </div>
+            <div class="panel-body">
+                <form role="form" class="form-inline" method="get" action="/admin/goods">
+                    <div class="form-group">
+                        <label for="name">输入关键词</label>
+                        <input type="text" class="form-control" value="<%=keyword%>" id="name" name="keyword"
+                            placeholder="请输入名称">
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default">开始搜索</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-center">名称</th>
+								<th class="text-center">分类</th>
+								<th class="text-center">库存</th>
+								<th class="text-center">地点</th>
+								<th class="text-center">场次</th>
+								<th class="text-center">票档</th>
+								<th class="text-center">位置</th>
+								<th class="text-center">定位（经纬度）</th>
+								<th class="text-center">图像</th>
+								<th class="text-center">排序</th>
+								<th class="text-center">状态</th>
+								<th class="text-center">新品</th>
+								<th class="text-center">热卖</th>
+								<th class="text-center">推荐</th>
+								<th class="text-center">创建时间</th>
+								<th class="text-center">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%for(var i=0;i<data.length;i++){%>
+                            <tr>
+                                <td><%=data[i].title%></td>
+                                <td><%=data[i].catelist[0].title%></td>
+                                <td><%=data[i].goods_number%></td>
+								<td><%=data[i].goods_city%></td>
+								<td><%=data[i].goods_time%></td>
+								<td><%=data[i].goods_price%></td>
+								<td><%=data[i].goods_position%></td>
+								<td><%=data[i].goods_location%></td>
+                                <td>
+                                    <img src="<%=data[i].goods_img%>" width="100">
+
+                                </td>
+                                <td><span
+                                        onclick="app.editNum(this,'Goods','sort','<%=data[i]._id%>')"><%=data[i].sort%></span>
+                                </td>
+                                <td class="text-center">
+                                    <%if(data[i].status==1){%>
+                                    <img src="/public/images/yes.gif" alt=""
+                                        onclick="app.toggle(this,'Goods','status','<%=data[i]._id%>')">
+                                    <%}else{%>
+                                    <img src="/public/images/no.gif" alt=""
+                                        onclick="app.toggle(this,'Goods','status','<%=data[i]._id%>')">
+                                    <%}%>
+                                </td>
+                                <!-- <td><%=data[i].is_new%></td>
+                                <td><%=data[i].is_hot%></td>
+                                <td><%=data[i].is_best%></td> -->
+                                <td class="text-center">
+                                    <%if(data[i].is_new==1){%>
+                                    <img src="/public/images/yes.gif" alt=""
+                                        onclick="app.toggle(this,'Goods','is_new','<%=data[i]._id%>')">
+                                    <%}else{%>
+                                    <img src="/public/images/no.gif" alt=""
+                                        onclick="app.toggle(this,'Goods','is_new','<%=data[i]._id%>')">
+                                    <%}%>
+                                </td>
+                                <td class="text-center">
+                                    <%if(data[i].is_hot==1){%>
+                                    <img src="/public/images/yes.gif" alt=""
+                                        onclick="app.toggle(this,'Goods','is_hot','<%=data[i]._id%>')">
+                                    <%}else{%>
+                                    <img src="/public/images/no.gif" alt=""
+                                        onclick="app.toggle(this,'Goods','is_hot','<%=data[i]._id%>')">
+                                    <%}%>
+                                    </td>
+                                    <td class="text-center">
+                                    <%if(data[i].is_best==1){%>
+                                    <img src="/public/images/yes.gif" alt=""
+                                        onclick="app.toggle(this,'Goods','is_best','<%=data[i]._id%>')">
+                                    <%}else{%>
+                                    <img src="/public/images/no.gif" alt=""
+                                        onclick="app.toggle(this,'Goods','is_best','<%=data[i]._id%>')">
+                                    <%}%>
+                                                                                                                                </td>
+                                <td><%=helper.formatTime(data[i].add_time)%></td>
+                                <td>
+                                    <a href="/admin/goods/edit?_id=<%=data[i]._id%>"
+                                        class="btn btn-primary btn-xs">修改</a>
+                                    <a href="/admin/del?collection=Goods&_id=<%=data[i]._id%>"
+                                        class="btn btn-danger btn-xs">删除</a>
+                                </td>
+                            </tr>
+                            <%}%>
+						</tbody>
+                    </table>
+                    <div id="page" class="pagination fr"></div>
+		        </div>
+        </div>
+    </div>
+</div>
+<!-- 后台ajax 特效 -->
+<script type="text/javascript" src="/public/js/base.js"></script>
+<script src="/public/js/jqPaginator.js"></script>
+<script>
+    $('#page').jqPaginator({
+        totalPages:<%=totalPages%>,
+        currentPage:<%=page %>,
+        onPageChange: function (num, type) {
+            console.log('当前第' + num + '页', type);
+            if (type == 'change') {
+                location.href = "/admin/goods?page=" + num + "&keyword=<%=keyword%>";
+            }
+        },
+	});
+
+</script>
+</body>
+</html>

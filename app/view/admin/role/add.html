@@ -1,0 +1,46 @@
+<%- include('../public/header.html') %>
+<%- include('../public/left-menu.html') %>
+
+
+
+<div class="main">
+    <div class="main-content">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                增加角色
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive input-form">
+                    <form action="/admin/role/doAdd" method="post">
+                        <ul>
+
+                            <input type="hidden" name="_csrf" value="<%=csrf%>">
+                            <li> 角色名称: <input type="text" name="title" /></li>
+
+
+
+                            <li>
+                                角色描述:
+                                <textarea name="description" id="" cols="60" rows="8"></textarea>
+                            </li>
+
+                            <li>
+                                <br />
+                                <button type="submit" class="btn btn-primary">提交</button>
+                            </li>
+
+                        </ul>
+
+
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

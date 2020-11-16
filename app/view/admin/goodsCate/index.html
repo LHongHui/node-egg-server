@@ -1,0 +1,70 @@
+<%- include('../public/header.html') %>
+<%- include('../public/left-menu.html') %>
+<div class="main">
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12"><a href="/admin/goodsCate/add" class="btn btn-primary">增加商品分类</a></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-center">名称</th>
+                                <th class="text-center">图像</th>
+                                <th class="text-center">排序</th>
+                                <th class="text-center">状态</th>
+                                <th class="text-center">创建时间</th>
+                                <th class="text-center">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%for(var i=0;i<data.length;i++){%>
+                            <tr>
+                                <td><%=data[i].title%></td>
+                                <td>
+                                    <img src="<%=data[i].cate_img%>" width="100">
+
+                                </td>
+                                <td width="150"><span
+                                        onclick="app.editNum(this,'GoodsCate','sort','<%=data[i]._id%>')"><%=data[i].sort%></span>
+                                </td>
+                                <!-- <td width="150">
+                                    <%=data[i].sort%>
+                                </td> -->
+                                <!-- <td class="text-center">
+                                    <%=data[i].status%>
+                                </td> -->
+                                <td class="text-center">
+                                    <%if(data[i].status==1){%>
+                                    <img src="/public/images/yes.gif" alt=""
+                                        onclick="app.toggle(this,'GoodsCate','status','<%=data[i]._id%>')">
+                                    <%}else{%>
+                                    <img src="/public/images/no.gif" alt=""
+                                        onclick="app.toggle(this,'GoodsCate','status','<%=data[i]._id%>')">
+                                    <%}%>
+                                									</td>
+                                <td><%=helper.formatTime(data[i].add_time)%></td>
+                                <td>
+                                    <a href="/admin/goodsCate/edit?_id=<%=data[i]._id%>"
+                                        class="btn btn-primary btn-xs">修改</a>
+                                    <a href="/admin/del?collection=GoodsCate&_id=<%=data[i]._id%>"
+                                        class="btn btn-danger btn-xs">删除</a>
+                                    <!-- <a href="/admin/goodsCate/del?_id=<%=data[i]._id%>"
+                                        class="btn btn-danger btn-xs">删除</a> -->
+                                </td>
+                            </tr>
+                            <%}%>
+						</tbody>
+					</table>
+		        </div>
+		    </div>
+	</div>
+</div>
+</div>
+<!-- 后台ajax 特效 -->
+<script type="text/javascript" src="/public/js/base.js"></script>
+</body>
+</html>

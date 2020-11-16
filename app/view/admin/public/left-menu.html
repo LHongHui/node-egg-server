@@ -1,0 +1,88 @@
+<!-- LEFT SIDEBAR -->
+<div id="sidebar-nav" class="sidebar">
+    <div class="sidebar-scroll">
+
+        <nav>
+            <ul class="nav">
+                <%for(var i=0;i<asideList.length;i++){%>
+                <li>
+
+                    <%if((asideList[i].checked && asideList[i].type==1) || (userinfo.is_super==1&& asideList[i].type==1)){%>
+                    <a href="#subPages<%=i%>" data-toggle="collapse" class="collapsed"><i
+                            class="lnr lnr-code"></i><span><%=asideList[i].module_name %></span> <i
+                            class="icon-submenu lnr lnr-chevron-left"></i></a>
+                    <div id="subPages<%=i%>" class="collapse ">
+                        <ul class="nav">
+
+                            <%for(var j=0;j<asideList[i].items.length;j++){%>
+                            <%if((asideList[i].items[j].checked && asideList[i].items[j].type!=3) || (userinfo.is_super==1 && asideList[i].items[j].type!=3)){%>
+                            <li class="list-group-item"> <a href="<%=asideList[i].items[j].url%>" target="rightMain">
+                                    <%=asideList[i].items[j].action_name %></a></li>
+                            <%}%>
+                            <%}%>
+                        </ul>
+                    </div>
+
+                    <%}%>
+                          
+                    </li>
+                
+                    <%}%>
+                    <!-- <li>
+                    <a href="#subPages1" data-toggle="collapse" class="collapsed"><i
+                            class="lnr lnr-code"></i><span>管理员管理</span> <i
+                            class="icon-submenu lnr lnr-chevron-left"></i></a>
+                    <div id="subPages1" class="collapse ">
+                        <ul class="nav">
+                            <li class="list-group-item"> <a href="/admin/admin"> 管理员列表</a></li>
+                            <li class="list-group-item"> <a href="/admin/admin/add">增加管理员</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#subPages2" data-toggle="collapse" class="collapsed"><i
+                            class="lnr lnr-alarm"></i><span>分类管理</span> <i
+                            class="icon-submenu lnr lnr-chevron-left"></i></a>
+                    <div id="subPages2" class="collapse ">
+                        <ul class="nav">
+                            <li class="list-group-item"> <a href="/admin/goodsCate"> 商品分类列表</a></li>
+                            <li class="list-group-item"> <a href="/admin/goodsCate/add">增加商品分类</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#subPages3" data-toggle="collapse" class="collapsed"><i
+                            class="lnr lnr-dice"></i><span>商品管理</span> <i
+                            class="icon-submenu lnr lnr-chevron-left"></i></a>
+                    <div id="subPages3" class="collapse ">
+                        <ul class="nav">
+                            <li class="list-group-item"> <a href="/admin/goods"> 商品列表</a></li>
+                            <li class="list-group-item"> <a href="/admin/goods/add">增加商品</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#subPages4" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i>
+                        <span>订单列表</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                    <div id="subPages4" class="collapse ">
+                        <ul class="nav">
+                            <li class="list-group-item"> <a href="/admin/order">订单列表</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#subPages5" data-toggle="collapse" class="collapsed"><i class="lnr lnr-chart-bars"></i>
+                        <span>轮播图管理</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                    <div id="subPages5" class="collapse ">
+                        <ul class="nav">
+                            <li class="list-group-item"> <a href="/admin/focus">轮播图列表</a></li>
+                            <li class="list-group-item"> <a href="/admin/focus/add">轮播图商品</a></li>
+                        </ul>
+                    </div>
+                </li> -->
+
+            </ul>
+        </nav>
+    </div>
+</div>
+<!-- END LEFT SIDEBAR -->

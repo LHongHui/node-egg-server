@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en" class="fullscreen-bg">
+
+<head>
+    <title>新视界</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!-- VENDOR CSS -->
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/style.css" tppabs="css/style.css" />
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="/public/css/main.css">
+
+    <style>
+        body{height:100%;background:#16a085;overflow:hidden;}
+        canvas{z-index:-1;position:absolute;}
+    </style>
+    <script src="/public/js/jquery.js"></script>
+    <script src="/public/js/verificationNumbers.js" tppabs="js/verificationNumbers.js"></script>
+    <script src="/public/js/Particleground.js" tppabs="js/Particleground.js"></script>
+    <script>
+        $(document).ready(function() {
+          //粒子背景特效
+          $('body').particleground({
+            dotColor: '#5cbdaa',
+            lineColor: '#5cbdaa'
+          });
+          //验证码
+          createCode();
+          //测试提交，对接程序删除即可
+          $(".submit_btn").click(function(){
+              location.href="javascrpt:;"/*tpa=http://***index.html*/;
+              });
+        });
+    </script>
+</head>
+
+<body>
+    <!-- WRAPPER -->
+    <!-- <div id="wrapper">
+        <div class="vertical-align-wrap">
+            <div class="vertical-align-middle">
+                <div class="auth-box ">
+                    <div class="left">
+                        <div class="content">
+                            <div class="header">
+                                <div class="logo text-center"><img src="/public/images/apple-icon.png"
+                                        alt="Klorofil Logo">
+                                </div>
+
+                            </div>
+                            <form class="form-auth-small" action="/admin/doLogin" method="post" id="myform">
+                                <input type="hidden" name="_csrf" value="<%=csrf%>">
+                                <div class="form-group">
+                                    <label for="signin-email" class="control-label sr-only">用户名：</label>
+                                    <input type="text" name="username" id="username" class="form-control"
+                                        id="signin-email" placeholder="用户名">
+                                </div>
+                                <div class="form-group">
+                                    <label for="signin-password" class="control-label sr-only">密 码：</label>
+                                    <input type="password" name="password" id="password" class="form-control"
+                                        id="signin-password" placeholder="密码">
+                                </div>
+                                <div class="form-group">
+                                    <label for="signin-verify" class="control-label sr-only">验证码：</label>
+                                    <input id="verify" type="text" name="verify" class="form-control" placeholder="验证码"
+                                        style="width:186px;float:left">
+                                    <img id="verify_img" src="/admin/login/verify" title="看不清？点击刷新"
+                                        onclick="javascript:this.src='/admin/login/verify?mt='+Math.random()">
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">登录</button>
+
+                            </form>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="overlay"></div>
+                        <div class="content text">
+                            <h1 class="heading">电商后台入口</h1>
+                            <p>http://www.chaochao.com</p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- END WRAPPER -->
+    <form class="form-auth-small" action="/admin/doLogin" method="post" id="myform">
+        <input type="hidden" name="_csrf" value="<%=csrf%>">
+        <dl class="admin_login"   action="/admin/doLogin" method="post" id="myform">
+            <dt>
+            <strong>票务后台管理系统</strong>
+            <em>Management System</em>
+            </dt>
+            <dd class="user_icon">
+            <input type="text" placeholder="用户名"  name="username" id="username" class="login_txtbx"/>
+            </dd>
+            <dd class="pwd_icon">
+            <input type="password" name="password" id="password" placeholder="密码" class="login_txtbx"/>
+            </dd>
+            <dd class="val_icon">
+                <!-- <div class="checkcode">
+                <input type="text" id="J_codetext" placeholder="验证码" maxlength="4" class="login_txtbx">
+                <canvas class="J_codeimg" id="myCanvas" onclick="createCode()">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>
+                </div>
+                <input type="button" value="验证码核验" class="ver_btn" onClick="validate();"> -->
+
+                <!-- <label for="signin-verify" class="control-label sr-only">验证码：</label> -->
+                <input id="verify" type="text" name="verify" placeholder="验证码" class="login_txtbx"
+                    style="float:left">
+                <img id="verify_img" src="/admin/login/verify" title="看不清？点击刷新"
+                    onclick="javascript:this.src='/admin/login/verify?mt='+Math.random()">
+            </dd>
+            <dd>
+            <button value="立即登陆" class="submit_btn">立即登陆</button>
+            </dd>
+        </dl>
+    </form>
+</body>
+
+</html>
